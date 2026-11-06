@@ -1,0 +1,1947 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RZMT — Careers & Admin Portal</title>
+  <!-- Google Analytics / Google Tag Manager -->
+  <script async src="https://www.googletagmanager.com/gtm.js?id=GTM-MXFC2WXR"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+  </script>
+  <link rel="icon" type="image/png" href="static/images/logo-transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: #2563EB;
+      --primary-hover: #1D4ED8;
+      --primary-subtle: #EFF6FF;
+      --primary-line: #DBEAFE;
+      --text-main: #0F172A;
+      --text-muted: #64748B;
+      --text-light: #94A3B8;
+      --bg: #F8FAFC;
+      --card-bg: #FFFFFF;
+      --border: #E2E8F0;
+      --border-focus: #93C5FD;
+      --danger: #EF4444;
+      --danger-subtle: #FEF2F2;
+      --success: #10B981;
+      --success-subtle: #ECFDF5;
+      --warning: #F59E0B;
+      --warning-subtle: #FFFBEB;
+      --radius: 12px;
+      --shadow-sm: 0 1px 3px rgba(15,23,42,0.06);
+      --shadow-md: 0 4px 16px rgba(15,23,42,0.08);
+      --shadow-lg: 0 12px 32px rgba(15,23,42,0.12);
+    }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    }
+    body {
+      background-color: var(--bg);
+      color: var(--text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Top Nav */
+    .admin-navbar {
+      background: #FFFFFF;
+      border-bottom: 1px solid var(--border);
+      padding: 14px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo {
+      height: 30px;
+      width: auto;
+      object-fit: contain;
+    }
+    .portal-badge {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--primary-subtle);
+      color: var(--primary);
+      padding: 4px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--primary-line);
+    }
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .btn-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+    .btn-link:hover {
+      color: var(--primary);
+    }
+    .btn-outline {
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: #FFFFFF;
+      color: var(--text-main);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-outline:hover {
+      border-color: var(--danger);
+      color: var(--danger);
+      background: var(--danger-subtle);
+    }
+
+    /* Main Container */
+    .main-wrap {
+      max-width: 1240px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 32px 24px 64px;
+      flex: 1;
+    }
+
+    /* Login Screen */
+    .login-container {
+      max-width: 420px;
+      margin: 60px auto;
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 36px 32px;
+      box-shadow: var(--shadow-md);
+      text-align: center;
+    }
+    .login-logo {
+      height: 38px;
+      margin-bottom: 20px;
+    }
+    .login-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .login-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+    }
+    .form-group {
+      margin-bottom: 18px;
+      text-align: left;
+    }
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-main);
+      margin-bottom: 6px;
+    }
+    .form-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      color: var(--text-main);
+      outline: none;
+      transition: border 0.2s, box-shadow 0.2s;
+    }
+    .form-input:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+    .form-textarea {
+      width: 100%;
+      padding: 10px 14px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 14px;
+      min-height: 80px;
+      color: var(--text-main);
+      resize: vertical;
+      outline: none;
+    }
+    .form-textarea:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(37,99,235,0.12);
+    }
+    .btn-primary {
+      width: 100%;
+      padding: 11px 20px;
+      background: var(--primary);
+      color: #FFFFFF;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+    .btn-primary:hover {
+      background: var(--primary-hover);
+    }
+    .btn-primary.w-auto {
+      width: auto;
+    }
+    .alert-error {
+      background: var(--danger-subtle);
+      border: 1px solid #FECACA;
+      color: var(--danger);
+      font-size: 13px;
+      padding: 10px 14px;
+      border-radius: 8px;
+      margin-bottom: 16px;
+      display: none;
+    }
+
+    /* Dashboard Header & Stats */
+    .dashboard-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 20px;
+      margin-bottom: 28px;
+      flex-wrap: wrap;
+    }
+    .dash-title {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.02em;
+    }
+    .dash-subtitle {
+      font-size: 14px;
+      color: var(--text-muted);
+      margin-top: 4px;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+    .stat-card {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 18px 20px;
+      box-shadow: var(--shadow-sm);
+    }
+    .stat-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-muted);
+    }
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-top: 6px;
+    }
+
+    /* Tabs */
+    .tabs-bar {
+      display: flex;
+      gap: 8px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+    .tab-btn {
+      padding: 12px 20px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text-muted);
+      background: transparent;
+      border: none;
+      border-bottom: 2px solid transparent;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .tab-btn:hover {
+      color: var(--primary);
+    }
+    .tab-btn.active {
+      color: var(--primary);
+      border-bottom-color: var(--primary);
+    }
+
+    /* Openings List */
+    .card-panel {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      overflow: hidden;
+    }
+    .panel-header {
+      padding: 18px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .panel-title {
+      font-size: 16px;
+      font-weight: 700;
+    }
+    .table-responsive {
+      width: 100%;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+    th {
+      background: #F8FAFC;
+      padding: 12px 20px;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+    td {
+      padding: 16px 20px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      vertical-align: middle;
+    }
+    tr:last-child td {
+      border-bottom: none;
+    }
+    tr:hover td {
+      background: #FAFCFF;
+    }
+
+    /* Status Pills */
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    .status-pill.status-submitted {
+      background: var(--primary-subtle);
+      color: var(--primary);
+      border: 1px solid var(--primary-line);
+    }
+    .status-pill.status-review {
+      background: #FEF3C7;
+      color: #D97706;
+      border: 1px solid #FDE68A;
+    }
+    .status-pill.status-shortlisted {
+      background: #F3E8FF;
+      color: #7E22CE;
+      border: 1px solid #E9D5FF;
+    }
+    .status-pill.status-interview {
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid #A7F3D0;
+    }
+    .status-pill.status-offer {
+      background: #DCFCE7;
+      color: #16A34A;
+      border: 1px solid #BBF7D0;
+    }
+    .status-pill.status-rejected {
+      background: #F1F5F9;
+      color: #64748B;
+      border: 1px solid #CBD5E1;
+    }
+
+    .select-status {
+      padding: 6px 10px;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-size: 13px;
+      font-weight: 600;
+      background: #FFFFFF;
+      cursor: pointer;
+      outline: none;
+      transition: border 0.2s;
+    }
+    .select-status:focus {
+      border-color: var(--primary);
+    }
+
+    .btn-action-icon {
+      background: transparent;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      transition: all 0.2s;
+    }
+    .btn-action-icon:hover {
+      color: var(--danger);
+      background: var(--danger-subtle);
+    }
+
+    /* Modal Backdrop */
+    .modal-backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      backdrop-filter: blur(4px);
+      z-index: 200;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .modal-backdrop.open {
+      display: flex;
+    }
+    .modal-card {
+      background: #FFFFFF;
+      border-radius: var(--radius);
+      width: 100%;
+      max-width: 620px;
+      max-height: 90vh;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      animation: modalFadeIn 0.25s ease-out;
+    }
+    @keyframes modalFadeIn {
+      from { opacity: 0; transform: translateY(12px) scale(0.98); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
+    }
+    .modal-header {
+      padding: 20px 24px;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .modal-body {
+      padding: 24px;
+      overflow-y: auto;
+    }
+    .modal-footer {
+      padding: 16px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      background: #F8FAFC;
+    }
+
+    /* Toast Notification */
+    .toast {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      background: #0F172A;
+      color: #FFFFFF;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      box-shadow: var(--shadow-lg);
+      z-index: 999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .toast.show {
+      transform: translateY(0);
+      opacity: 1;
+    }
+
+    /* Website Visitor & Attraction Analytics Styles */
+    .visitor-analytics-panel {
+      background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+      border: 1px solid #CBD5E1;
+      border-radius: var(--radius);
+      box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.06);
+      padding: 24px 28px;
+      margin-bottom: 32px;
+      position: relative;
+    }
+    .visitor-panel-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 22px;
+    }
+    .visitor-live-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 3px 10px;
+      background: #ECFDF5;
+      color: #047857;
+      border: 1px solid #A7F3D0;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .live-dot-pulse {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: livePulse 1.8s infinite;
+    }
+    @keyframes livePulse {
+      0% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7); }
+      70% { box-shadow: 0 0 0 8px rgba(16, 185, 129, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(16, 185, 129, 0); }
+    }
+    .visitor-section-heading {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--text-main);
+      margin: 0 0 4px;
+      letter-spacing: -0.01em;
+    }
+    .visitor-section-sub {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin: 0;
+      max-width: 680px;
+    }
+    .visitor-panel-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .btn-refresh-stats, .btn-toggle-visitor-logs {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 7px 14px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .btn-refresh-stats {
+      background: #FFFFFF;
+      border: 1px solid var(--border);
+      color: var(--text-main);
+    }
+    .btn-refresh-stats:hover {
+      background: #F1F5F9;
+      border-color: #94A3B8;
+    }
+    .btn-toggle-visitor-logs {
+      background: #EFF6FF;
+      border: 1px solid #BFDBFE;
+      color: #1D4ED8;
+    }
+    .btn-toggle-visitor-logs:hover {
+      background: #DBEAFE;
+      color: #1E40AF;
+    }
+    .visitor-stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .vstat-card {
+      background: #FFFFFF;
+      border: 1px solid #E2E8F0;
+      border-radius: 10px;
+      padding: 18px 20px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      position: relative;
+      box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .vstat-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(15, 23, 42, 0.07);
+    }
+    .vstat-card-attracted {
+      background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 100%);
+      border: 1.5px solid #86EFAC;
+      box-shadow: 0 4px 14px rgba(16, 185, 129, 0.12);
+    }
+    .attracted-badge-ribbon {
+      position: absolute;
+      top: 10px;
+      right: 12px;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 10px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #047857;
+      background: #D1FAE5;
+      padding: 2px 7px;
+      border-radius: 999px;
+    }
+    .vstat-icon-wrap {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    .bg-blue-subtle { background: #EFF6FF; }
+    .bg-indigo-subtle { background: #EEF2FF; }
+    .bg-emerald-subtle { background: #D1FAE5; }
+    .bg-purple-subtle { background: #F5F3FF; }
+    .vstat-meta {
+      flex: 1;
+      min-width: 0;
+    }
+    .vstat-label {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+    .vstat-number {
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--text-main);
+      line-height: 1.2;
+      margin: 4px 0 3px;
+      letter-spacing: -0.02em;
+    }
+    .text-emerald {
+      color: #059669;
+    }
+    .vstat-foot {
+      font-size: 11px;
+      color: var(--text-muted);
+      display: block;
+      line-height: 1.4;
+    }
+    .vstat-prog-track {
+      width: 100%;
+      height: 6px;
+      background: #E2E8F0;
+      border-radius: 999px;
+      overflow: hidden;
+      margin: 6px 0;
+    }
+    .vstat-prog-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #7C3AED, #2563EB);
+      border-radius: 999px;
+      transition: width 0.6s ease;
+    }
+    .visitor-secondary-bar {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      background: #F1F5F9;
+      border: 1px solid #E2E8F0;
+      border-radius: 8px;
+      padding: 10px 18px;
+      font-size: 13px;
+      color: var(--text-main);
+      flex-wrap: wrap;
+    }
+    .vsec-item {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vsec-title {
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+    .vsec-divider {
+      width: 1px;
+      height: 16px;
+      background: #CBD5E1;
+    }
+    .top-pages-pills {
+      display: inline-flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+    .top-page-tag {
+      background: #FFFFFF;
+      border: 1px solid #CBD5E1;
+      padding: 2px 7px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-main);
+    }
+    .attraction-reason-badge {
+      display: inline-block;
+      background: #F0FDF4;
+      border: 1px solid #BBF7D0;
+      color: #166534;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      margin: 2px 3px 2px 0;
+    }
+    .visitor-stats-grid-5 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .ip-code-badge {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-size: 13px;
+      font-weight: 700;
+      background: #F1F5F9;
+      color: #0F172A;
+      padding: 3px 8px;
+      border-radius: 6px;
+      border: 1px solid #CBD5E1;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .btn-copy-ip {
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      padding: 2px;
+      color: #64748B;
+      display: inline-flex;
+      align-items: center;
+      transition: color 0.15s;
+    }
+    .btn-copy-ip:hover {
+      color: #2563EB;
+    }
+    .status-online-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      background: #ECFDF5;
+      color: #059669;
+      border: 1px solid #A7F3D0;
+      white-space: nowrap;
+    }
+    .status-offline-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 600;
+      background: #F8FAFC;
+      color: #64748B;
+      border: 1px solid #E2E8F0;
+      white-space: nowrap;
+    }
+    .online-beacon-pulse {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10B981;
+      box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.7);
+      animation: livePulse 1.6s infinite;
+    }
+    .offline-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #94A3B8;
+    }
+    .page-route-tag {
+      background: #EFF6FF;
+      color: #1D4ED8;
+      border: 1px solid #DBEAFE;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 2px 7px;
+      border-radius: 4px;
+      display: inline-block;
+    }
+    .btn-autorefresh-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 13px;
+      border-radius: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+      border: 1px solid #A7F3D0;
+      background: #ECFDF5;
+      color: #047857;
+      transition: all 0.2s;
+    }
+    .btn-autorefresh-toggle.paused {
+      background: #F1F5F9;
+      border-color: #CBD5E1;
+      color: #64748B;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top Navigation -->
+  <header class="admin-navbar">
+    <div class="nav-brand">
+      <img src="static/images/logo-transparent.png" alt="RZMT Logo" class="nav-logo">
+      <span class="portal-badge">Careers Admin</span>
+      <span id="dbBadge" style="font-size:11px; font-weight:600; background:#EFF6FF; color:#2563EB; border:1px solid #DBEAFE; padding:3px 8px; border-radius:6px; display:inline-flex; align-items:center; gap:5px;">
+        <span style="width:6px; height:6px; border-radius:50%; background:#2563EB;"></span>
+        <span>MongoDB Atlas &bull; Cloudinary Storage</span>
+      </span>
+    </div>
+    <div class="nav-actions">
+      <a href="/" class="btn-link">← View Website</a>
+      <div id="authActions" style="display:none; align-items:center; gap:12px;">
+        <span style="font-size:13px; font-weight:600; color:var(--text-muted);">Admin Logged In</span>
+        <button id="btnLogout" class="btn-outline">Logout</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Area -->
+  <main class="main-wrap">
+    
+    <!-- Login Screen (shown when logged out) -->
+    <div id="loginSection" class="login-container" style="display:none;">
+      <img src="static/images/logo-transparent.png" alt="RZMT" class="login-logo">
+      <h2 class="login-title">Admin Portal Login</h2>
+      <p class="login-sub">Manage job openings and candidate applications</p>
+
+      <div id="loginError" class="alert-error"></div>
+
+      <form id="loginForm">
+        <div class="form-group">
+          <label class="form-label" for="txtUsername">Username</label>
+          <input type="text" id="txtUsername" class="form-input" placeholder="admin" required autofocus>
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="txtPassword">Password</label>
+          <input type="password" id="txtPassword" class="form-input" placeholder="••••••••" required>
+        </div>
+        <button type="submit" class="btn-primary" id="btnSubmitLogin">
+          <span>Sign In as Admin</span>
+        </button>
+      </form>
+    </div>
+
+    <!-- Admin Dashboard (shown when logged in) -->
+    <div id="dashboardSection" style="display:none;">
+
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <!-- TOP EXECUTIVE COMMAND BAR & LIVE DATA METRICS                    -->
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <div class="dashboard-header" style="align-items:center; margin-bottom:20px;">
+        <div>
+          <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap; margin-bottom:6px;">
+            <div class="visitor-live-pill">
+              <span class="live-dot-pulse"></span>
+              <span>LIVE MONGODB ATLAS TELEMETRY</span>
+            </div>
+            <div class="status-online-pill" id="headerOnlinePill">
+              <span class="online-beacon-pulse"></span>
+              <span><strong id="statOnlineNowHeader">0</strong> Active Online Now</span>
+            </div>
+          </div>
+          <h1 class="dash-title">Platform Intelligence & Command Center</h1>
+          <p class="dash-subtitle">Real-time visitor IP tracking, registered user directory, and recruitment management powered by MongoDB Atlas.</p>
+        </div>
+        <div style="display:flex; align-items:center; gap:10px; flex-wrap:wrap;">
+          <a href="/api/admin/export/visitors-csv" class="btn-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Export all captured visitors & IP telemetry to CSV">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Visitors CSV</span>
+          </a>
+          <a href="/api/admin/export/users-csv" class="btn-outline" style="text-decoration:none; display:inline-flex; align-items:center; gap:6px;" title="Export all registered users & candidates to CSV">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span>Users CSV</span>
+          </a>
+          <button class="btn-autorefresh-toggle" id="btnToggleAutoRefresh" title="Toggle 5-second live telemetry polling">
+            <span class="online-beacon-pulse" id="pulseAutoRefresh"></span>
+            <span id="textAutoRefresh">Auto-Refresh: LIVE (5s)</span>
+          </button>
+          <button class="btn-primary w-auto" id="btnNewOpening">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 5v14M5 12h14"/></svg>
+            <span>Post Opening</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 Key Live Metric Cards (Categorized) -->
+      <div class="visitor-stats-grid-5" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin-bottom:24px;">
+        <!-- Card 1: Live Online Now -->
+        <div class="vstat-card" style="border-left: 3.5px solid #10B981; background: linear-gradient(135deg, #F0FDF4 0%, #FFFFFF 100%);">
+          <div class="vstat-icon-wrap bg-emerald-subtle">
+            <span class="online-beacon-pulse" style="width:12px; height:12px;"></span>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label" style="color:#065F46;">Online Now</span>
+            <div class="vstat-number text-emerald" id="statOnlineNow">0</div>
+            <span class="vstat-foot" style="color:#047857;">Active in last 2 mins</span>
+          </div>
+        </div>
+
+        <!-- Card 2: Total Visits & Impressions -->
+        <div class="vstat-card">
+          <div class="vstat-icon-wrap bg-blue-subtle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#2563EB" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label">Total Visits</span>
+            <div class="vstat-number" id="statTotalVisits">0</div>
+            <span class="vstat-foot">Page loads logged in Atlas</span>
+          </div>
+        </div>
+
+        <!-- Card 3: Captured Unique IPs -->
+        <div class="vstat-card">
+          <div class="vstat-icon-wrap bg-indigo-subtle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4F46E5" stroke-width="2"><rect x="2" y="2" width="20" height="8" rx="2" ry="2"/><rect x="2" y="14" width="20" height="8" rx="2" ry="2"/><line x1="6" y1="6" x2="6.01" y2="6"/><line x1="6" y1="18" x2="6.01" y2="18"/></svg>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label">Captured IPs</span>
+            <div class="vstat-number" id="statUniqueIpsBadge">0</div>
+            <span class="vstat-foot"><span id="statUniqueVisitors">0</span> Total Unique Visitors</span>
+          </div>
+        </div>
+
+        <!-- Card 4: Registered Users / Candidates -->
+        <div class="vstat-card">
+          <div class="vstat-icon-wrap" style="background:#FEF3C7;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#D97706" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label" style="color:#92400E;">Registered Users</span>
+            <div class="vstat-number" id="statTotalUsers" style="color:#B45309;">0</div>
+            <span class="vstat-foot" style="color:#92400E;">Candidate profiles in Atlas</span>
+          </div>
+        </div>
+
+        <!-- Card 5: Fully Attracted Visitors -->
+        <div class="vstat-card vstat-card-attracted">
+          <div class="attracted-badge-ribbon">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+            <span>GOAL</span>
+          </div>
+          <div class="vstat-icon-wrap bg-emerald-subtle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#059669" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label" style="color:#065F46;">Fully Attracted</span>
+            <div class="vstat-number text-emerald" id="statFullyAttracted">0</div>
+            <span class="vstat-foot" style="color:#047857;">&ge;30s dwell, &ge;60% scroll</span>
+          </div>
+        </div>
+
+        <!-- Card 6: Attraction Rate -->
+        <div class="vstat-card">
+          <div class="vstat-icon-wrap bg-purple-subtle">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#7C3AED" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          </div>
+          <div class="vstat-meta">
+            <span class="vstat-label">Attraction Rate</span>
+            <div class="vstat-number" id="statAttractionRate">0%</div>
+            <div class="vstat-prog-track">
+              <div class="vstat-prog-fill" id="statAttractionProg" style="width: 0%;"></div>
+            </div>
+            <span class="vstat-foot">High-intent engagement index</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Tabs (Categorizing Live Visitors, Registered Users, Applications, Openings) -->
+      <div class="tabs-bar">
+        <button class="tab-btn active" id="tabVisitorsBtn">
+          Live Visitors & IP Telemetry (<span id="visitorsCountBadge">0</span>)
+        </button>
+        <button class="tab-btn" id="tabUsersBtn">
+          Registered Users & Candidates (<span id="usersCountBadge">0</span>)
+        </button>
+        <button class="tab-btn" id="tabApplicationsBtn">
+          Applicant Tracking (<span id="appsCountBadge">0</span>)
+        </button>
+        <button class="tab-btn" id="tabOpeningsBtn">
+          Job Openings (<span id="openingsCountBadge">0</span>)
+        </button>
+      </div>
+
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <!-- CATEGORY 1: LIVE WEBSITE VISITORS & IP TELEMETRY                 -->
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <div id="tabVisitors">
+        <!-- Secondary Insights Bar -->
+        <div class="visitor-secondary-bar" style="margin-bottom:18px;">
+          <div class="vsec-item">
+            <span class="vsec-title">Avg. Session Dwell:</span>
+            <strong id="statAvgDwell">0 sec</strong>
+          </div>
+          <div class="vsec-divider"></div>
+          <div class="vsec-item">
+            <span class="vsec-title">Device Breakdown:</span>
+            <strong id="statDeviceBreakdown">Desktop: 0 | Mobile: 0</strong>
+          </div>
+          <div class="vsec-divider"></div>
+          <div class="vsec-item">
+            <span class="vsec-title">Top Visited Pages:</span>
+            <span id="statTopPages" class="top-pages-pills">--</span>
+          </div>
+        </div>
+
+        <div class="card-panel">
+          <div class="panel-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h3 class="panel-title" style="margin:0;">Live Captured IP Addresses & Website Visitors Feed</h3>
+                <span class="page-route-tag" id="statLogsCount">Latest sessions</span>
+              </div>
+              <p style="font-size:13px; color:var(--text-muted); margin:4px 0 0;">
+                Live incoming visitor IPs, geographic network location, pages opened, dwell time, and attraction status recorded in MongoDB Atlas collection <code>rzmt.visitors</code>.
+              </p>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <a href="/api/admin/export/visitors-csv" class="btn-outline" style="font-size:12px; padding:6px 14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download Visitors CSV</span>
+              </a>
+              <button class="btn-outline" id="btnRefreshVisitorStats" style="font-size:12px; padding:6px 14px;">
+                <span>Refresh Live Visitors</span>
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive" style="max-height:480px; overflow-y:auto;">
+            <table>
+              <thead>
+                <tr>
+                  <th>Captured IP Address</th>
+                  <th>Location & ISP Network</th>
+                  <th>Live Status</th>
+                  <th>Page Opened</th>
+                  <th>Device / Browser</th>
+                  <th>Dwell & Scroll</th>
+                  <th>Attraction Status</th>
+                </tr>
+              </thead>
+              <tbody id="visitorLogsTableBody">
+                <tr><td colspan="7" style="text-align:center; padding:28px; color:var(--text-muted);">Loading live visitor IP records from MongoDB Atlas...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <!-- CATEGORY 2: REGISTERED CANDIDATE USERS                           -->
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <div id="tabUsers" style="display:none;">
+        <div class="card-panel">
+          <div class="panel-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <h3 class="panel-title" style="margin:0;">Registered Candidates & User Directory</h3>
+                <span class="status-pill status-submitted" style="font-size:11px;">MongoDB Atlas &bull; rzmt.candidates</span>
+              </div>
+              <p style="font-size:13px; color:var(--text-muted); margin:4px 0 0;">
+                All verified user accounts registered on the Careers portal. Admin can view details and download the user database in CSV format.
+              </p>
+            </div>
+            <div style="display:flex; align-items:center; gap:8px;">
+              <a href="/api/admin/export/users-csv" class="btn-outline" style="font-size:12px; padding:6px 14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download Users CSV</span>
+              </a>
+              <button class="btn-outline" id="btnRefreshUsers" style="font-size:12px; padding:6px 14px;">
+                <span>Refresh Users</span>
+              </button>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>User / Candidate Name</th>
+                  <th>Email Address</th>
+                  <th>Phone Number</th>
+                  <th>Registration Date</th>
+                  <th>Applications Submitted</th>
+                  <th>Database Status</th>
+                </tr>
+              </thead>
+              <tbody id="usersTableBody">
+                <tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">Loading registered users...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <!-- CATEGORY 3: APPLICANT TRACKING & RESUME REVIEW                   -->
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <div id="tabApplications" style="display:none;">
+        <div class="card-panel">
+          <div class="panel-header" style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+            <div>
+              <h3 class="panel-title" style="margin:0;">Candidate Applications & Recruitment Tracking</h3>
+              <p style="font-size:13px; color:var(--text-muted); margin:4px 0 0;">Review candidate submissions, inspect Cloudinary resumes, and update hiring statuses.</p>
+            </div>
+            <div>
+              <a href="/api/admin/export/applications-csv" class="btn-outline" style="font-size:12px; padding:6px 14px; text-decoration:none; display:inline-flex; align-items:center; gap:6px;">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download Applications CSV</span>
+              </a>
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Applicant Name</th>
+                  <th>Opening Applied For</th>
+                  <th>Contact Info</th>
+                  <th>Experience & Resume</th>
+                  <th>Submission Date</th>
+                  <th>Live Status (Update)</th>
+                </tr>
+              </thead>
+              <tbody id="applicationsTableBody">
+                <tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">Loading applications...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <!-- CATEGORY 4: PUBLISHED JOB OPENINGS                               -->
+      <!-- ═════════════════════════════════════════════════════════════════ -->
+      <div id="tabOpenings" style="display:none;">
+        <div class="card-panel">
+          <div class="panel-header">
+            <h3 class="panel-title">Published Openings (Reflected in Careers Section)</h3>
+          </div>
+          <div class="table-responsive">
+            <table>
+              <thead>
+                <tr>
+                  <th>Job Title</th>
+                  <th>Department</th>
+                  <th>Location & Type</th>
+                  <th>Experience</th>
+                  <th>Applicants</th>
+                  <th>Status</th>
+                  <th style="text-align:right;">Action</th>
+                </tr>
+              </thead>
+              <tbody id="openingsTableBody">
+                <tr><td colspan="7" style="text-align:center; color:var(--text-muted); padding:32px;">Loading openings...</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Modal: Post / Edit Opening -->
+  <div class="modal-backdrop" id="openingModal">
+    <div class="modal-card">
+      <div class="modal-header">
+        <h3 style="font-size:17px; font-weight:700;" id="modalTitle">Post New Opening</h3>
+        <button class="btn-action-icon" id="btnCloseModal">✕</button>
+      </div>
+      <div class="modal-body">
+        <form id="openingForm">
+          <input type="hidden" id="editOpeningId" value="">
+          <div class="form-group">
+            <label class="form-label" for="jobTitle">Job Title *</label>
+            <input type="text" id="jobTitle" class="form-input" placeholder="e.g. Edge Hardware & Embedded Systems Engineer" required>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="jobDept">Department *</label>
+              <input type="text" id="jobDept" class="form-input" placeholder="e.g. Hardware & Firmware" required>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="jobLoc">Location *</label>
+              <input type="text" id="jobLoc" class="form-input" placeholder="e.g. Bengaluru · Hybrid" required>
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:16px;">
+            <div class="form-group">
+              <label class="form-label" for="jobType">Job Type</label>
+              <select id="jobType" class="form-input">
+                <option value="Full-time">Full-time</option>
+                <option value="Part-time">Part-time</option>
+                <option value="Contract">Contract</option>
+                <option value="Internship">Internship</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="jobExp">Experience</label>
+              <input type="text" id="jobExp" class="form-input" placeholder="e.g. 2-5 years">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jobDesc">Role Description *</label>
+            <textarea id="jobDesc" class="form-textarea" placeholder="Detail the role objectives, challenges, and context..." required></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="jobReqs">Key Requirements / Skills</label>
+            <textarea id="jobReqs" class="form-textarea" placeholder="Relevant skills, technologies, experience needed..."></textarea>
+          </div>
+          <div class="form-group" id="groupStatus" style="display:none;">
+            <label class="form-label" for="jobStatus">Status</label>
+            <select id="jobStatus" class="form-input">
+              <option value="Active">Active (Visible in Careers)</option>
+              <option value="Archived">Archived (Hidden)</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn-outline" id="btnCancelModal">Cancel</button>
+        <button type="button" class="btn-primary w-auto" id="btnSaveOpening">Save & Publish</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div class="toast" id="adminToast">Action completed</div>
+
+  <script>
+    // State
+    let isAdmin = false;
+    let openings = [];
+    let applications = [];
+    let users = [];
+
+    // Toast helper
+    function showToast(msg) {
+      const t = document.getElementById("adminToast");
+      t.textContent = msg;
+      t.classList.add("show");
+      setTimeout(() => t.classList.remove("show"), 3200);
+    }
+
+    // Check login state
+    async function checkAuth() {
+      try {
+        const res = await fetch("/api/admin/check");
+        const data = await res.json();
+        isAdmin = data.is_admin;
+        renderView();
+        checkSystemStatus();
+      } catch (err) {
+        isAdmin = false;
+        renderView();
+        checkSystemStatus();
+      }
+    }
+
+    async function checkSystemStatus() {
+      try {
+        const res = await fetch("/api/system/status");
+        const data = await res.json();
+        const badge = document.getElementById("dbBadge");
+        if (badge) {
+          if (data.mongo_active) {
+            badge.innerHTML = '<span style="width:6px; height:6px; border-radius:50%; background:#10B981;"></span><span>MongoDB Atlas: Connected &bull; Cloudinary Active</span>';
+            badge.style.background = "#ECFDF5";
+            badge.style.color = "#059669";
+            badge.style.borderColor = "#A7F3D0";
+          } else {
+            badge.innerHTML = '<span style="width:6px; height:6px; border-radius:50%; background:#2563EB;"></span><span>Database: Active &bull; Cloudinary Storage</span>';
+            badge.style.background = "#EFF6FF";
+            badge.style.color = "#2563EB";
+            badge.style.borderColor = "#DBEAFE";
+          }
+        }
+      } catch (e) {}
+    }
+
+    function renderView() {
+      const loginSec = document.getElementById("loginSection");
+      const dashSec = document.getElementById("dashboardSection");
+      const authAct = document.getElementById("authActions");
+
+      if (isAdmin) {
+        loginSec.style.display = "none";
+        dashSec.style.display = "block";
+        authAct.style.display = "flex";
+        loadData();
+      } else {
+        loginSec.style.display = "block";
+        dashSec.style.display = "none";
+        authAct.style.display = "none";
+      }
+    }
+
+    // Login handler
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const errBox = document.getElementById("loginError");
+      errBox.style.display = "none";
+
+      const u = document.getElementById("txtUsername").value.trim();
+      const p = document.getElementById("txtPassword").value.trim();
+
+      try {
+        const res = await fetch("/api/admin/login", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ username: u, password: p })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          isAdmin = true;
+          renderView();
+          showToast("Welcome back, Admin!");
+        } else {
+          errBox.textContent = data.error || "Login failed.";
+          errBox.style.display = "block";
+        }
+      } catch (err) {
+        errBox.textContent = "Server error. Please try again.";
+        errBox.style.display = "block";
+      }
+    });
+
+    // Logout handler
+    document.getElementById("btnLogout").addEventListener("click", async () => {
+      await fetch("/api/admin/logout", { method: "POST" });
+      isAdmin = false;
+      renderView();
+      showToast("Logged out successfully.");
+    });
+
+    // Load Openings & Applications & Users & Visitors
+    async function loadData() {
+      await Promise.all([loadOpenings(), loadApplications(), loadUsers(), loadVisitorStats()]);
+      updateMetrics();
+      startAutoRefresh();
+    }
+
+    let autoRefreshEnabled = true;
+    let countdownSecs = 5;
+    let countdownTimer = null;
+
+    function startAutoRefresh() {
+      if (countdownTimer) clearInterval(countdownTimer);
+      countdownSecs = 5;
+      countdownTimer = setInterval(async () => {
+        if (!autoRefreshEnabled || !isAdmin) return;
+        countdownSecs--;
+        const textEl = document.getElementById("textAutoRefresh");
+        if (textEl) {
+          textEl.textContent = `Auto-Refresh: LIVE (${countdownSecs}s)`;
+        }
+        if (countdownSecs <= 0) {
+          countdownSecs = 5;
+          await loadVisitorStats();
+        }
+      }, 1000);
+    }
+
+    async function loadVisitorStats() {
+      try {
+        const res = await fetch("/api/admin/visitor-stats");
+        const data = await res.json();
+        if (data.ok && data.stats) {
+          renderVisitorStats(data.stats);
+        }
+      } catch (err) {
+        console.error("Failed loading visitor telemetry", err);
+      }
+    }
+
+    window.copyIp = function(ip) {
+      if (!ip) return;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(ip).then(() => {
+          showToast("Copied IP: " + ip);
+        }).catch(() => {
+          showToast("IP: " + ip);
+        });
+      } else {
+        showToast("IP: " + ip);
+      }
+    };
+
+    function renderVisitorStats(stats) {
+      const onlineCount = stats.online_now_count || 0;
+      const elOnline = document.getElementById("statOnlineNow");
+      const elOnlineHead = document.getElementById("statOnlineNowHeader");
+      if (elOnline) elOnline.textContent = onlineCount.toLocaleString();
+      if (elOnlineHead) elOnlineHead.textContent = onlineCount.toLocaleString();
+
+      document.getElementById("statTotalVisits").textContent = (stats.total_visits || 0).toLocaleString();
+      document.getElementById("statUniqueVisitors").textContent = (stats.total_visitors || 0).toLocaleString();
+      const vBadge = document.getElementById("visitorsCountBadge");
+      if (vBadge) vBadge.textContent = (stats.total_visitors || 0).toLocaleString();
+      
+      const elUniqueIps = document.getElementById("statUniqueIpsBadge");
+      if (elUniqueIps) {
+        elUniqueIps.textContent = (stats.unique_ips_count || stats.total_visitors || 0).toLocaleString();
+      }
+
+      document.getElementById("statFullyAttracted").textContent = (stats.fully_attracted_count || 0).toLocaleString();
+      
+      const rate = Number(stats.attraction_rate || 0).toFixed(1);
+      document.getElementById("statAttractionRate").textContent = rate + "%";
+      const progEl = document.getElementById("statAttractionProg");
+      if (progEl) {
+        progEl.style.width = Math.min(100, Math.max(0, rate)) + "%";
+      }
+
+      // Secondary summary
+      const avgSec = stats.avg_duration_seconds || 0;
+      const avgFormatted = avgSec >= 60 ? Math.floor(avgSec / 60) + "m " + (avgSec % 60) + "s" : avgSec + "s";
+      document.getElementById("statAvgDwell").textContent = avgFormatted;
+
+      const desk = stats.device_breakdown?.desktop || 0;
+      const mob = stats.device_breakdown?.mobile || 0;
+      document.getElementById("statDeviceBreakdown").textContent = `Desktop: ${desk} | Mobile: ${mob}`;
+
+      const topPagesEl = document.getElementById("statTopPages");
+      if (topPagesEl) {
+        if (stats.top_pages && stats.top_pages.length > 0) {
+          topPagesEl.innerHTML = stats.top_pages.map(p => `
+            <span class="top-page-tag">${escapeHtml(p.page)} <strong>(${p.count})</strong></span>
+          `).join("");
+        } else {
+          topPagesEl.textContent = "—";
+        }
+      }
+
+      // Live Captured IP Addresses & Visitor Feed
+      const tbody = document.getElementById("visitorLogsTableBody");
+      const logs = stats.recent_visitors || [];
+      const logCountEl = document.getElementById("statLogsCount");
+      if (logCountEl) {
+        logCountEl.textContent = `${logs.length} Live Visitor IP Records in Atlas`;
+      }
+
+      if (!logs.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; padding:24px; color:var(--text-muted);">No visitor logs recorded yet in MongoDB Atlas.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = logs.map(v => {
+        const isAttracted = v.is_fully_attracted;
+        const reasons = v.attraction_reasons || [];
+        const reasonsHtml = reasons.length > 0 
+          ? reasons.map(r => `<span class="attraction-reason-badge">${escapeHtml(r)}</span>`).join("")
+          : `<span style="font-size:12px; color:var(--text-muted);">General Exploration</span>`;
+
+        const statusBadge = isAttracted
+          ? `<span class="status-pill status-offer" style="font-weight:700;"><svg width="12" height="12" viewBox="0 0 24 24" fill="#16A34A" style="margin-right:3px;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>Fully Attracted</span>`
+          : `<span class="status-pill status-submitted">Casual Visitor</span>`;
+
+        const isOnline = Boolean(v.is_online);
+        const liveStatePill = isOnline
+          ? `<span class="status-online-pill"><span class="online-beacon-pulse"></span>Online Now</span>`
+          : `<span class="status-offline-pill"><span class="offline-dot"></span>${v.secs_ago < 3600 ? Math.max(1, Math.floor(v.secs_ago / 60)) + 'm ago' : (v.last_visit ? v.last_visit.split(' ')[1] : 'Logged')}</span>`;
+
+        const ip = v.ip_address || "127.0.0.1";
+        const isLocal = ip === "127.0.0.1" || ip === "::1" || ip.startsWith("192.168.");
+        const ipTypeBadge = isLocal 
+          ? `<span style="font-size:10px; font-weight:700; color:#64748B; background:#E2E8F0; padding:1px 5px; border-radius:3px;">LAN/DEV</span>`
+          : `<span style="font-size:10px; font-weight:700; color:#0369A1; background:#E0F2FE; padding:1px 5px; border-radius:3px;">PUBLIC IP</span>`;
+
+        const pageDisplay = v.current_page || (v.pages_visited && v.pages_visited[0]) || "/";
+
+        return `
+          <tr>
+            <td>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <span class="ip-code-badge">
+                  ${escapeHtml(ip)}
+                  <button type="button" class="btn-copy-ip" onclick="copyIp('${escapeHtml(ip)}')" title="Copy IP">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+                  </button>
+                </span>
+                ${ipTypeBadge}
+              </div>
+              <div style="font-size:11px; color:var(--text-muted); font-family:monospace; margin-top:3px;">ID: ${escapeHtml(v.visitor_id || 'v_anon')} &bull; ${v.visit_count || 1} hit(s)</div>
+            </td>
+            <td>
+              <div style="font-size:13px; font-weight:600; color:var(--text-main);">${escapeHtml(v.location || 'India (Public IP Network)')}</div>
+            </td>
+            <td>${liveStatePill}</td>
+            <td>
+              <span class="page-route-tag">${escapeHtml(pageDisplay)}</span>
+            </td>
+            <td>
+              <div style="font-size:13px; font-weight:600;">${escapeHtml(v.browser || v.device_type || 'Desktop')}</div>
+              <div style="font-size:11px; color:var(--text-muted);">${escapeHtml(v.device_type || 'Desktop')}</div>
+            </td>
+            <td>
+              <div style="font-size:12px; font-weight:600;">${v.total_time_seconds || 0}s dwell</div>
+              <div style="font-size:11px; color:var(--text-muted);">${v.max_scroll || 0}% scroll depth</div>
+            </td>
+            <td>
+              <div style="margin-bottom:3px;">${statusBadge}</div>
+              <div style="max-width:200px;">${reasonsHtml}</div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    async function loadOpenings() {
+      try {
+        const res = await fetch("/api/admin/openings");
+        const data = await res.json();
+        if (data.ok) {
+          openings = data.openings || [];
+          renderOpenings();
+        }
+      } catch (err) {
+        console.error("Failed loading openings", err);
+      }
+    }
+
+    async function loadApplications() {
+      try {
+        const res = await fetch("/api/admin/applications");
+        const data = await res.json();
+        if (data.ok) {
+          applications = data.applications || [];
+          renderApplications();
+        }
+      } catch (err) {
+        console.error("Failed loading applications", err);
+      }
+    }
+
+    function updateMetrics() {
+      const activeOps = openings.filter(o => o.status === "Active").length;
+      document.getElementById("statOpenings").textContent = activeOps;
+      document.getElementById("statApplications").textContent = applications.length;
+
+      const underRev = applications.filter(a => a.status === "Under Review").length;
+      document.getElementById("statUnderReview").textContent = underRev;
+
+      const shortlisted = applications.filter(a => a.status === "Shortlisted" || a.status === "Interview Scheduled").length;
+      document.getElementById("statShortlisted").textContent = shortlisted;
+
+      document.getElementById("openingsCountBadge").textContent = openings.length;
+      document.getElementById("appsCountBadge").textContent = applications.length;
+    }
+
+    function renderOpenings() {
+      const tbody = document.getElementById("openingsTableBody");
+      if (!openings.length) {
+        tbody.innerHTML = `<tr><td colspan="7" style="text-align:center; color:var(--text-muted); padding:32px;">No job openings found. Click "Post New Opening" to add one.</td></tr>`;
+        return;
+      }
+
+      tbody.innerHTML = openings.map(op => `
+        <tr>
+          <td>
+            <strong style="color:var(--text-main); font-size:15px;">${escapeHtml(op.title)}</strong>
+          </td>
+          <td><span style="color:var(--text-muted);">${escapeHtml(op.department)}</span></td>
+          <td>${escapeHtml(op.location)} · <span style="font-size:12px; font-weight:600; color:var(--primary);">${escapeHtml(op.job_type)}</span></td>
+          <td>${escapeHtml(op.experience || 'Not specified')}</td>
+          <td><span class="status-pill status-submitted">${op.applicant_count || 0} applicants</span></td>
+          <td>
+            <span class="status-pill ${op.status === 'Active' ? 'status-interview' : 'status-rejected'}">
+              ${escapeHtml(op.status)}
+            </span>
+          </td>
+          <td style="text-align:right;">
+            <button class="btn-outline" style="padding:4px 10px; font-size:12px; margin-right:6px;" onclick="editOpening(${op.id})">Edit</button>
+            <button class="btn-action-icon" onclick="deleteOpening(${op.id})" title="Delete opening">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M19 6v14a2 2 0 01-2 2H7a2 2 0 01-2-2V6m3 0V4a2 2 0 012-2h4a2 2 0 012 2v2M10 11v6M14 11v6"/></svg>
+            </button>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    function renderApplications() {
+      const tbody = document.getElementById("applicationsTableBody");
+      if (!applications.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">No applications received yet.</td></tr>`;
+        return;
+      }
+
+      const statuses = ["Submitted", "Under Review", "Shortlisted", "Interview Scheduled", "Offer Extended", "Rejected"];
+
+      tbody.innerHTML = applications.map(app => {
+        let pillClass = "status-submitted";
+        if (app.status === "Under Review") pillClass = "status-review";
+        if (app.status === "Shortlisted") pillClass = "status-shortlisted";
+        if (app.status === "Interview Scheduled") pillClass = "status-interview";
+        if (app.status === "Offer Extended") pillClass = "status-offer";
+        if (app.status === "Rejected") pillClass = "status-rejected";
+
+        const formattedDate = new Date(app.created_at).toLocaleDateString("en-US", {
+          month: "short", day: "numeric", year: "numeric"
+        });
+
+        return `
+          <tr>
+            <td>
+              <div style="font-weight:700; color:var(--text-main); font-size:15px;">${escapeHtml(app.candidate_name)}</div>
+              <div style="font-size:12px; color:var(--text-muted); margin-top:2px;">ID #${app.id}</div>
+            </td>
+            <td>
+              <strong style="color:var(--primary); font-size:14px;">${escapeHtml(app.opening_title)}</strong>
+              ${app.department ? `<div style="font-size:12px; color:var(--text-muted);">${escapeHtml(app.department)}</div>` : ''}
+            </td>
+            <td>
+              <div><a href="mailto:${escapeHtml(app.candidate_email)}" style="color:var(--primary); text-decoration:none;">${escapeHtml(app.candidate_email)}</a></div>
+              <div style="font-size:13px; color:var(--text-muted); margin-top:2px;">${escapeHtml(app.candidate_phone || 'No phone')}</div>
+            </td>
+            <td>
+              <div style="font-weight:600; font-size:13px;">Exp: ${escapeHtml(app.experience_years || 'N/A')}</div>
+              ${app.resume_url ? `
+                <div style="margin-top:6px;">
+                  <a href="${escapeHtml(app.resume_url)}" target="_blank" rel="noopener noreferrer" style="display:inline-flex; align-items:center; gap:5px; font-size:12px; font-weight:700; color:#2563EB; background:#EFF6FF; border:1px solid #DBEAFE; padding:4px 10px; border-radius:6px; text-decoration:none;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <span>View Cloudinary Resume ↗</span>
+                  </a>
+                </div>
+              ` : '<div style="font-size:11px; color:var(--text-muted); margin-top:4px;">No file attached</div>'}
+              ${app.portfolio_link ? `<div style="margin-top:4px;"><a href="${escapeHtml(app.portfolio_link)}" target="_blank" rel="noopener" style="font-size:12px; color:var(--text-muted); text-decoration:underline;">Portfolio / Profile ↗</a></div>` : ''}
+              ${app.resume_notes ? `<div style="font-size:12px; color:var(--text-muted); margin-top:4px; max-width:240px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis;" title="${escapeHtml(app.resume_notes)}">Note: ${escapeHtml(app.resume_notes)}</div>` : ''}
+            </td>
+            <td><span style="font-size:13px; color:var(--text-muted);">${formattedDate}</span></td>
+            <td>
+              <div style="display:flex; align-items:center; gap:8px;">
+                <select class="select-status" onchange="updateStatus(${app.id}, this.value)">
+                  ${statuses.map(s => `<option value="${s}" ${s === app.status ? 'selected' : ''}>${s}</option>`).join("")}
+                </select>
+                <span class="status-pill ${pillClass}">${escapeHtml(app.status)}</span>
+              </div>
+            </td>
+          </tr>
+        `;
+      }).join("");
+    }
+
+    // Update Status Handler
+    async function updateStatus(appId, newStatus) {
+      try {
+        const res = await fetch(`/api/admin/applications/${appId}/status`, {
+          method: "PUT",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ status: newStatus })
+        });
+        const data = await res.json();
+        if (data.ok) {
+          showToast(`Application #${appId} status updated to: ${newStatus}`);
+          loadApplications();
+          updateMetrics();
+        } else {
+          alert(data.error || "Failed to update status");
+        }
+      } catch (err) {
+        alert("Network error updating status");
+      }
+    }
+
+    // Modal & Opening Form Handlers
+    const modal = document.getElementById("openingModal");
+    document.getElementById("btnNewOpening").addEventListener("click", () => {
+      document.getElementById("modalTitle").textContent = "Post New Opening";
+      document.getElementById("editOpeningId").value = "";
+      document.getElementById("openingForm").reset();
+      document.getElementById("groupStatus").style.display = "none";
+      modal.classList.add("open");
+    });
+
+    document.getElementById("btnCloseModal").addEventListener("click", () => modal.classList.remove("open"));
+    document.getElementById("btnCancelModal").addEventListener("click", () => modal.classList.remove("open"));
+
+    window.editOpening = function(id) {
+      const op = openings.find(o => o.id === id);
+      if (!op) return;
+      document.getElementById("modalTitle").textContent = "Edit Job Opening";
+      document.getElementById("editOpeningId").value = op.id;
+      document.getElementById("jobTitle").value = op.title;
+      document.getElementById("jobDept").value = op.department;
+      document.getElementById("jobLoc").value = op.location;
+      document.getElementById("jobType").value = op.job_type;
+      document.getElementById("jobExp").value = op.experience || "";
+      document.getElementById("jobDesc").value = op.description;
+      document.getElementById("jobReqs").value = op.requirements || "";
+      document.getElementById("jobStatus").value = op.status;
+      document.getElementById("groupStatus").style.display = "block";
+      modal.classList.add("open");
+    };
+
+    window.deleteOpening = async function(id) {
+      if (!confirm("Are you sure you want to delete this opening?")) return;
+      try {
+        const res = await fetch(`/api/admin/openings/${id}`, { method: "DELETE" });
+        const data = await res.json();
+        if (data.ok) {
+          showToast("Opening removed.");
+          loadOpenings();
+          updateMetrics();
+        } else {
+          alert(data.error || "Delete failed");
+        }
+      } catch (err) {
+        alert("Network error while deleting");
+      }
+    };
+
+    document.getElementById("btnSaveOpening").addEventListener("click", async () => {
+      const id = document.getElementById("editOpeningId").value;
+      const title = document.getElementById("jobTitle").value.trim();
+      const department = document.getElementById("jobDept").value.trim();
+      const location = document.getElementById("jobLoc").value.trim();
+      const job_type = document.getElementById("jobType").value;
+      const experience = document.getElementById("jobExp").value.trim();
+      const description = document.getElementById("jobDesc").value.trim();
+      const requirements = document.getElementById("jobReqs").value.trim();
+      const status = document.getElementById("jobStatus").value;
+
+      if (!title || !department || !description) {
+        alert("Please fill in Title, Department, and Description.");
+        return;
+      }
+
+      const payload = { title, department, location, job_type, experience, description, requirements, status };
+
+      try {
+        let res;
+        if (id) {
+          res = await fetch(`/api/admin/openings/${id}`, {
+            method: "PUT",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+        } else {
+          res = await fetch("/api/admin/openings", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(payload)
+          });
+        }
+        const data = await res.json();
+        if (data.ok) {
+          modal.classList.remove("open");
+          showToast(id ? "Opening updated successfully!" : "Opening published!");
+          loadOpenings();
+          updateMetrics();
+        } else {
+          alert(data.error || "Save failed");
+        }
+      } catch (err) {
+        alert("Error saving opening");
+      }
+    });
+
+    // Load registered candidate users from MongoDB Atlas
+    async function loadUsers() {
+      try {
+        const res = await fetch("/api/admin/users");
+        const data = await res.json();
+        if (data.ok) {
+          users = data.users || [];
+          renderUsers();
+          const badge = document.getElementById("usersCountBadge");
+          if (badge) badge.textContent = users.length;
+          const totalUsersEl = document.getElementById("statTotalUsers");
+          if (totalUsersEl) totalUsersEl.textContent = users.length;
+        }
+      } catch (err) {
+        console.error("Failed loading users", err);
+      }
+    }
+
+    function renderUsers() {
+      const tbody = document.getElementById("usersTableBody");
+      if (!tbody) return;
+      if (!users.length) {
+        tbody.innerHTML = `<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:32px;">No registered candidates found in MongoDB Atlas.</td></tr>`;
+        return;
+      }
+      tbody.innerHTML = users.map(u => `
+        <tr>
+          <td>
+            <div style="font-weight:600; color:var(--text-main); font-size:14px;">${escapeHtml(u.name || "Unnamed Candidate")}</div>
+            <div style="font-size:11px; color:var(--text-muted);">ID: ${escapeHtml(u.id)}</div>
+          </td>
+          <td>
+            <a href="mailto:${escapeHtml(u.email)}" style="color:var(--primary); font-size:13px; text-decoration:none;">${escapeHtml(u.email)}</a>
+          </td>
+          <td style="font-size:13px; color:var(--text-main);">${escapeHtml(u.phone || "—")}</td>
+          <td style="font-size:12px; color:var(--text-muted);">${escapeHtml(u.created_at || "—")}</td>
+          <td>
+            <span style="display:inline-block; padding:3px 10px; border-radius:999px; background:#EFF6FF; color:#2563EB; font-weight:700; font-size:12px; border:1px solid #DBEAFE;">
+              ${u.application_count || 0} application${u.application_count === 1 ? '' : 's'}
+            </span>
+          </td>
+          <td>
+            <span class="status-badge status-active">Registered in Atlas</span>
+          </td>
+        </tr>
+      `).join("");
+    }
+
+    const btnRefreshUsers = document.getElementById("btnRefreshUsers");
+    if (btnRefreshUsers) {
+      btnRefreshUsers.addEventListener("click", () => {
+        loadUsers();
+        showToast("Users refreshed from MongoDB Atlas");
+      });
+    }
+
+    // 4-Tab Navigation switching
+    const tabVisitorsBtn = document.getElementById("tabVisitorsBtn");
+    const tabUsersBtn = document.getElementById("tabUsersBtn");
+    const tabApplicationsBtn = document.getElementById("tabApplicationsBtn");
+    const tabOpeningsBtn = document.getElementById("tabOpeningsBtn");
+
+    const tabVisitors = document.getElementById("tabVisitors");
+    const tabUsers = document.getElementById("tabUsers");
+    const tabApplications = document.getElementById("tabApplications");
+    const tabOpenings = document.getElementById("tabOpenings");
+
+    function switchAdminTab(targetTab) {
+      const allTabs = [tabVisitors, tabUsers, tabApplications, tabOpenings];
+      const allBtns = [tabVisitorsBtn, tabUsersBtn, tabApplicationsBtn, tabOpeningsBtn];
+
+      allTabs.forEach(t => { if (t) t.style.display = "none"; });
+      allBtns.forEach(b => { if (b) b.classList.remove("active"); });
+
+      if (targetTab === "visitors") {
+        if (tabVisitors) tabVisitors.style.display = "block";
+        if (tabVisitorsBtn) tabVisitorsBtn.classList.add("active");
+        loadVisitorStats();
+      } else if (targetTab === "users") {
+        if (tabUsers) tabUsers.style.display = "block";
+        if (tabUsersBtn) tabUsersBtn.classList.add("active");
+        loadUsers();
+      } else if (targetTab === "applications") {
+        if (tabApplications) tabApplications.style.display = "block";
+        if (tabApplicationsBtn) tabApplicationsBtn.classList.add("active");
+        loadApplications();
+      } else if (targetTab === "openings") {
+        if (tabOpenings) tabOpenings.style.display = "block";
+        if (tabOpeningsBtn) tabOpeningsBtn.classList.add("active");
+        loadOpenings();
+      }
+    }
+
+    if (tabVisitorsBtn) tabVisitorsBtn.addEventListener("click", () => switchAdminTab("visitors"));
+    if (tabUsersBtn) tabUsersBtn.addEventListener("click", () => switchAdminTab("users"));
+    if (tabApplicationsBtn) tabApplicationsBtn.addEventListener("click", () => switchAdminTab("applications"));
+    if (tabOpeningsBtn) tabOpeningsBtn.addEventListener("click", () => switchAdminTab("openings"));
+
+    function escapeHtml(str) {
+      if (!str) return "";
+      return String(str)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+    }
+
+    // Visitor Analytics Actions & Auto-Refresh Toggle
+    const btnToggleAutoRefresh = document.getElementById("btnToggleAutoRefresh");
+    if (btnToggleAutoRefresh) {
+      btnToggleAutoRefresh.addEventListener("click", () => {
+        autoRefreshEnabled = !autoRefreshEnabled;
+        const pulse = document.getElementById("pulseAutoRefresh");
+        const txt = document.getElementById("textAutoRefresh");
+        if (autoRefreshEnabled) {
+          btnToggleAutoRefresh.classList.remove("paused");
+          if (pulse) pulse.style.display = "inline-block";
+          if (txt) txt.textContent = "Auto-Refresh: LIVE (5s)";
+          countdownSecs = 5;
+          showToast("Live telemetry auto-refresh resumed");
+        } else {
+          btnToggleAutoRefresh.classList.add("paused");
+          if (pulse) pulse.style.display = "none";
+          if (txt) txt.textContent = "Auto-Refresh: PAUSED";
+          showToast("Live telemetry paused");
+        }
+      });
+    }
+
+    const btnRefreshVisitorStats = document.getElementById("btnRefreshVisitorStats");
+    if (btnRefreshVisitorStats) {
+      btnRefreshVisitorStats.addEventListener("click", async () => {
+        btnRefreshVisitorStats.disabled = true;
+        await loadVisitorStats();
+        btnRefreshVisitorStats.disabled = false;
+        showToast("Website visitor statistics updated from Atlas");
+      });
+    }
+
+    // Init
+    checkAuth();
+  </script>
+</body>
+</html>
+
